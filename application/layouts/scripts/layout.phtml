@@ -1,0 +1,25 @@
+<?php echo $this->doctype()?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<?php echo $this->headTitle(); ?>
+		<?php echo $this->headLink(); ?>
+		<?php echo $this->headScript(); ?>
+	</head>
+	<body>
+		<div id="crosshairs"></div>
+		<header id="main-header">
+			<nav id="main-nav">
+				<ul id="main-nav-list">
+					<li class="main-nav-list-item"><a href="" id="main-nav-link-blog" class="main-nav-link">Blog</a></li>
+					<li class="main-nav-list-item"><a href="" id="main-nav-link-tutorials" class="main-nav-link">Tutorials</a></li>
+					<li class="main-nav-list-item"><a href="" id="main-nav-link-code" class="main-nav-link">Code</a></li>
+					<li class="main-nav-list-item"><a href="" id="main-nav-link-contact" class="main-nav-link">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div id="page-wrapper">
+			<?php echo $this->layout()->content; ?>
+		</div>
+	</body>
+</html>
