@@ -1,0 +1,34 @@
+<?php
+	echo $this->headScript()->appendFile('/scripts/blog/scripts.blog.js');
+?>
+<section id="blog-wrapper" class="container slide">
+	<section id="blog" class="blog-wrapper row">
+		<div class="onecol gutter"></div>
+		<header class="entry-header tencol last">
+			<h3 class="entry-title">Entry Title</h3>
+		</header>
+		<div class="onecol"></div>
+		<article id="post-id" class="entry-content tencol last">
+			<aside class="entry-info twocol last">
+				<ul class="entry-info-list">
+					<li class="entry-date">05-27-12</li>
+					<li class="entry-author">Ken Stowell</li>
+				</ul>
+				<ul class="entry-tags">
+					<li class="entry-tags-list-item"></li>
+				</ul>
+			</aside>
+			<p class="entry-text">
+				The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
+				like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
+				maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
+				particles. There seems to be no difficult in moving around, as we suspected.
+			</p>
+		</article>
+	</section>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			new Blog();
+		});
+	</script>
+</section>

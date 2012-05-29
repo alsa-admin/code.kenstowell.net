@@ -1,13 +1,36 @@
-<section id="home" class="content-wrapper row">
-	<header id="home-header">
-
-	</header>
-	<article class="twelvecol">
-		<p>
-			The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
-			like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
-			maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
-			particles. There seems to be no difficult in moving around, as we suspected.
-		</p>
-	</article>
+<?php
+	$this->headLink()->appendStylesheet('/styles/index/styles.index.css');
+	$this->headScript()->appendFile('/scripts/index/scripts.index.js');
+?>
+<section id="home-wrapper" class="container slide">
+	<section id="home" class="content-wrapper row">
+		<div class="onecol gutter"></div>
+		<header id="home-header" class="tencol last">
+			<h1 class="section-title">HI.</h1>
+			<p>
+				My name is Ken Stowell and <span id="interwebs" class="image-on-hover">I <3 the interwebs</span>.
+			</p>
+			<p>
+				This website aims to serve as a platform for sharing my
+				<span id="enthusiasm" class="image-on-hover">enthusiasm</span> for web development.
+			</p>
+			<div class="twelvecol"></div>
+			<p>
+				I currently work as a front-end developer for <span id="hostbaby" class="image-on-hover"><a href="http://www.hostbaby.com">HostBaby</a></span> - a shared hosting platform for musicians and authors;
+				I love writing code that has a visual implementation and I love talking about it. Feel free to peruse my blog, snippets, plugins and
+				tutorials!
+			</p>
+		</header>
+		<img id="interwebs-img" class="pop-up-image" src="/images/index/all_the_internets.png" alt="interwebs" />
+		<img id="hostbaby-img" class="pop-up-image" src="/images/index/hostbaby_logo.png" alt="hostbaby" />
+		<img id="enthusiasm-img" class="pop-up-image" src="/images/index/uber_happy.gif" alt="enthusiasm" />
+	</section>
 </section>
+<?php
+	echo $this->action('index', 'services', null);
+	echo $this->action('index', 'work', null);
+	echo $this->action('index', 'blog', null);
+	echo $this->action('index', 'tutorials', null);
+	echo $this->action('index', 'code', null);
+	echo $this->action('index', 'contact', null);
+?>

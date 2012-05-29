@@ -1,16 +1,12 @@
-/* Javascript document
+/*
+ * Crosshairs jQuery plugin
  *
  * @Author:	Ken Stowell
- * @Date:		
+ * @Date:
+ * @rev: v1.0
  *
  * @Description: 
  */
-
-/**********************************************************************************************************************************************************
- * GLOBAL VARS/FUNCTIONS																																																																	*
- *********************************************************************************************************************************************************/
-
-/************************************************************* END GLOBAL VARS ***************************************************************************/
 
 /**********************************************************************************************************************************************************
  * CROSSHAIRS jQUERY PLUGIN																																																																*
@@ -42,6 +38,7 @@
 		this.$w = this.width = this.options.width;//width option
         this.$h = this.height = this.options.height;//height option
         this.$vis = this.visible = this.options.visible;
+	  	this.$url = this.show_in_url = this.options.show_in_url;
 		this.$align = this.alignment = this.options.alignment;//alignment option
 		this.$off = this.offset = this.options.offset;//Offset option
 		this.$pth = this.pathing = this.options.pathing;//pathing option
@@ -60,7 +57,8 @@
 	Crosshairs.defaults = {
         width: '20px', //width
         height: '20px',//height
-        visible: false,
+        visible: false,//toggle for crosshairs visibility
+	  	show_in_url: true,
         alignment: 'center', //portion of the box the content is aligned to upon moving
         offset: 0, //margin from the box - integer only
         pathing: 'fixed', //pathing type
@@ -96,6 +94,12 @@
 			//build the trigger event handler
 			$.each(self.$cont, function(key, val) {
 				$(val.trigger.selector).bind('click', function(e) {
+				  	//prevent the browser from default <a> behavior
+				  	e.preventDefault();
+				  	//if show in url is true - hash the url
+				  	if(self.$url === true) {
+						window.location.hash = '/'+this.textContent.toLowerCase();
+					}
 					//for each object in content, bind it's 'trigger' to a method call for the appropriate target content
 					self.pathToTarget(val.target.selector);
 				});
@@ -131,15 +135,6 @@
 			var self = this;
             var o = parseInt(this.$off);//offset
 
-			/**
-			 * 1. get current position relative to alignment
-			 * 2. get position of target element relative to alignment
-			 * 3. calculate difference
-			 * 4. plot trajectory accounting for offset and pathing type
-			 * 5. path to target
-			 */
-			console.log(self.getItemCoordinates(this.$ch));
-
 			//get the current position
             var c = current_position = self.getItemCoordinates(this.$ch);//current crosshair location based on ch settings, alignment and offset
             var c_left, c_top;//final coords for current position.
@@ -148,32 +143,26 @@
 				case 'center':
                     c_left = c.TL.x + (this.$ch.width() /2) + o;
                     c_top = c.TL.y + (this.$ch.height() / 2) + o;
-                    console.log(c_left, c_top)
 					break;
                 case 'top-left':
                     c_left = c.TL.x + o;
                     c_top = c.TL.y + o;
-                    console.log(c_left, c_top)
                     break;
                 case 'top-right':
                     c_left = c.TR.x + o;
                     c_top = c.TR.y + o;
-                    console.log(c_left, c_top)
                     break;
                 case 'bottom-left':
                     c_left = c.BL.x + o;
                     c_top = c.BL.y + o;
-                    console.log(c_left, c_top)
                     break;
                 case 'bottom-right':
                     c_left = c.BR.x + o;
                     c_top = c.BR.y + o;
-                    console.log(c_left, c_top)
                     break;
                 default:
                     c_left = c.TL.x + (this.$ch.width() /2) + o;
                     c_top = c.TL.y + (this.$ch.height() / 2) + o;
-                    console.log(c_left, c_top)
                     break;
 			}
 
@@ -185,32 +174,26 @@
                 case 'center':
                     t_left = t.TL.x + ($(target).width() /2) + o;
                     t_top = t.TL.y + ($(target).height() / 2) + o;
-                    console.log(t_left, t_top)
                     break;
                 case 'top-left':
                     t_left = t.TL.x + o;
                     t_top = t.TL.y + o;
-                    console.log(t_left, t_top)
                     break;
                 case 'top-right':
                     t_left = t.TR.x + o;
                     t_top = t.TR.y + o;
-                    console.log(t_left, t_top)
                     break;
                 case 'bottom-left':
                     t_left = t.BL.x + o;
                     t_top = t.BL.y + o;
-                    console.log(t_left, t_top)
                     break;
                 case 'bottom-right':
                     t_left = t.BR.x + o;
                     t_top = t.BR.y + o;
-                    console.log(t_left, t_top)
                     break;
                 default:
                     t_left = t.TL.x + ($(target).width() /2) + o;
                     t_top = t.TL.y + ($(target).height() / 2) + o;
-                    console.log(t_left, t_top)
                     break;
             }
 
@@ -222,21 +205,15 @@
                 dist_top = t_top - c_top;
 
                 //animate the path to the new coords
-                $('#page-wrapper').animate({
+                $('#page-wrapper').stop().animate({
                     top: -dist_top +'px',
                     left: -dist_left+'px'
-                }, 5000)
+                }, 5000, function(){
+				});
             }
 		},
 		/**
-		 * UPDATE CROSSHAIRS
-		 * @param delta
-		 */
-		updateCrossHairs: function(delta) {
-
-		},
-		/**
-		 * GET ITEM COORDIATES
+		 * GET ITEM COORDINATES
 		 * @desc: gets item coordiantes for each x,y intersection
 		 * @param elem
 		 */
