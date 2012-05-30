@@ -1,42 +1,38 @@
-/**
- * Created by JetBrains PhpStorm.
- * User: kstowell
- * Date: 5/28/12
- * Time: 3:48 PM
- * To change this template use File | Settings | File Templates.
- */
-
 /* Javascript document
  *
  * @Author:	Ken Stowell
- * @Date:		
+ * @Date: 5/28/12
  *
  * @Description: 
  */
 
 /**********************************************************************************************************************************************************
- * GLOBAL VARS/FUNCTIONS																																																																	*
+ * GLOBAL VARS/FUNCTIONS																																  *
  *********************************************************************************************************************************************************/
 
 /************************************************************* END GLOBAL VARS ***************************************************************************/
 
 /**********************************************************************************************************************************************************
- *																																																																							   *
+ * KENSTOWELL.NET OBJECT																																  *
  **********************************************************************************************************************************************************
- *
- *
- *
- *
+ * @desc: Main application scripting resource for kenstowell.net. This is script is ever present as it is directly injected into the DOM from the
+ *		  bootstrap.
  *
  *
  */
 (function() {
 
+  /**
+   * KENSTOWELL.NET OBJECT DECLARATION
+   */
   var Kenstowell_Net = function() {
 	console.log('INIT', new Date().getTime());
 	this.init();
   };
 
+  /**
+   * KENSTOWELL.NET PROTOTYPE OBJECT METHODS
+   */
   Kenstowell_Net.prototype = {
 	init: function() {
 	  console.log('INIT');
@@ -93,7 +89,6 @@
              }
         });
 	  });
-
 	  /**
 	   * DOCUMENT READY
 	   */
@@ -110,12 +105,7 @@
 	bindEvents: function() {
 	  var self = this;
 
-	  //disable nav links from actually navigating - and add them to the hash
-//	  $('.main-nav-link').live('click', function(e) {
-//
-//		return false;
-//	  });
-	}
+  	}
   };
 
   //Instantiate Object

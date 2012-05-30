@@ -16,12 +16,11 @@
 .entry-header {
     font-family: franchiseregular;
     font-size: 22px;
-    text-decoration: underline;
+    border-bottom: 1px solid black;
+    padding: 0 0 5px 0;
+    margin: 0 0 5px 0;
 }
 
-.entry-title{
-    margin: 30px 0;
-}
 /**********************************************************************************************************************************************************
  * CONTENT       																																																															            *
  *********************************************************************************************************************************************************/
@@ -40,24 +39,70 @@ section#blog {
 aside.entry-info {
     font-family: sofiaprolight;
     font-size: 11px;
-    float: right;
-    clear: both;
     height: 100%;
 }
 
 aside.entry-info ul {
-  border-left: 1px #5b544b solid;
-  padding: 0 5px;
+
 }
 
 aside.entry-info ul li {
+    display: inline;
     list-style-type:  none;
 }
 
+aside.entry-info ul li:first-child {
+    padding: 0 5px 0 0;
+}
+
+article.entry-content aside.entry-tags {
+    width:79%;
+    /*position: relative;*/
+    /*top:0;*/
+    /*right:0;*/
+}
+
+article.entry-content aside.entry-tags ul.entry-tags-list{
+    text-align: right;
+    margin: 0 0 5px 0;
+}
+
+article.entry-content aside.entry-tags ul.entry-tags-list li.entry-tags-list-item{
+    display: inline;
+    list-style-type: none;
+    font-family: codeprodemoregular;
+    font-size: 10px;
+    color: #5b544b;
+    background: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding:2px 5px;
+    margin: 3px 5px;
+}
+
+article.entry-content aside.entry-tags ul.entry-tags-list li.entry-tags-list-item:hover{
+    background: #98A3A8;
+    color:white;
+}
+
+article.entry-content aside.entry-tags ul.entry-tags-list li.entry-tags-list-item:first-child{
+    padding:2px 5px;
+}
+
+article.entry-content aside.entry-tags ul.entry-tags-list li.entry-tags-list-item:last-child{
+    padding:2px 0 2px 5px;
+    margin:0;
+}
+
 article.entry-content p.entry-text {
-    width:80%;
+    width:77.5%;
+    padding:0 6px 7px 6px;
     font-family: sofiaprolight;
     font-size: 13px;
+    background: #A89A8A;
+    border: 1px solid #A89A8A;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 /**********************************************************************************************************************************************************
  * FOOTER      																																																															            *
