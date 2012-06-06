@@ -1,5 +1,5 @@
 <?php
-	echo $this->headScript()->appendFile('/scripts/blog/scripts.blog.js');
+	$this->headScript()->appendFile('/scripts/blog/scripts.blog.js');
 ?>
 <section id="blog-wrapper" class="container slide">
 	<section id="blog" class="blog-wrapper row">
@@ -23,17 +23,50 @@
 					<li class="entry-tags-list-item">Web Development</li>
 				</ul>
 			</aside>
-			<p class="entry-text">
-				The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
-				like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
-				maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
-				particles. There seems to be no difficult in moving around, as we suspected.
-			</p>
+			<article>
+				<p class="entry-text">
+					The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
+					like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
+					maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
+					particles. There seems to be no difficult in moving around, as we suspected.
+				</p>
+				<p class="entry-text">
+					The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
+					like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
+					maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
+					particles. There seems to be no difficult in moving around, as we suspected.
+				</p>
+				<p class="entry-text">
+					The surface is fine and powdery. I can kick it up loosely with my toe. It does adhere in fine layers,
+					like powdered charcoal, to the sole and sides of my boots. I only go in a small fraction of an inch,
+					maybe an eighth of an inch, but I can see the footprints of my boots and the treads in the fine, sandy
+					particles. There seems to be no difficult in moving around, as we suspected.
+				</p>
+			</article>
 		</article>
+		<section id="comments" class="eightcol">
+			<section id="leave-a-comment">
+				<header>
+					<h4>Leave  a comment</h4>
+				</header>
+				<form id="blog-comment-form" method="post">
+					<fieldset id="name-elements">
+						<input id="name" type="text" name="name">
+						<label id="name-label" for="name">Name</label>
+					</fieldset>
+					<fieldset id="email-elements">
+						<input type="text" id="email-address" name="email-address">
+						<label id="email-label" for="email-address">Email</label>
+					</fieldset>
+					<fieldset id="textarea-elements">
+						<textarea rows="8" cols="90" id="comment-textarea" name="comment-textarea"></textarea>
+					</fieldset>
+					<input type="button" id="comment-submit" name="comment-submit" value="submit comment">
+				</form>
+			</section>
+			<section id="show-comment">
+
+			</section>
+		</section>
 	</section>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			new Blog();
-		});
-	</script>
 </section>

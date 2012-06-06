@@ -3,7 +3,7 @@
  * @Author:	Ken Stowell
  * @Date:		
  *
- * @Description: BLOGS JS
+ * @Description: 
  */
 
 /**********************************************************************************************************************************************************
@@ -11,61 +11,63 @@
  *********************************************************************************************************************************************************/
 
 /**********************************************************************************************************************************************************
- * BLOG OBJECT																																																																						*
+ *	OBJECT
  **********************************************************************************************************************************************************
  *
- *
+ * @desc: Main scripting resources for audio page types
  *
  *
  *
  *
  */
-(function() {
+(function () {
 	/**
-	 * BLOG OBJECT
+	 * OBJECT CONSTRUCTOR
 	 */
-	var Blog = function() {
-		//init object methods
+	var Object = function () {
+		var self = this;
+
+		//instantiate object methods
 		this.init();
 	};
 
 	/**
-	 * BLOG OBJECT METHODS
+	 * OBJECT OBJECT METHODS
 	 */
-	Blog.prototype = {
+	Object.prototype = {
 		/**
 		 * INIT
 		 */
-		init: function() {
-			//load styles
-			this.loadStyles();
-		},
-		/**
-		 * LOAD STYLES
-		 */
-		loadStyles: function() {
+		init:function () {
 			var self = this;
 
+			//load dynamic page elements
+			this.buildPage();
+		},
+		/**
+		 * BUILD PAGE
+		 */
+		buildPage:function () {
 			/**
-			 * WINDOW LOAD
-			 */
-			$(window).load(function () {
-
-			});
-			/**
-			 * DOC READY
+			 * Document Ready
 			 */
 			$(document).ready(function () {
 
 			});
+
+			/**
+			 * Window Load
+			 */
+			$(window).load(function () {
+
+			});
 		}
 	};
-	//instantiate object
-	new Blog();
+
+	//instantiate the object and push it to the window object
+	var Obj = new Object();
+	window.O = window.Obj = Obj;
 })();
-
-
-
 
 
 /************************************************************* END ***************************************************************************************/ 
