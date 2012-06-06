@@ -24,7 +24,7 @@
 	/**
 	 * OBJECT CONSTRUCTOR
 	 */
-	var Object = function () {
+	var _Admin = function () {
 		var self = this;
 
 		//instantiate object methods
@@ -32,9 +32,9 @@
 	};
 
 	/**
-	 * OBJECT OBJECT METHODS
+	 * _Admin OBJECT METHODS
 	 */
-	Object.prototype = {
+	_Admin.prototype = {
 		/**
 		 * INIT
 		 */
@@ -65,8 +65,7 @@
 	};
 
 	//instantiate the object and push it to the window object
-	var Obj = new Object();
-	window.O = window.Obj = Obj;
+	var Obj = new _Admin();
 })();
 
 

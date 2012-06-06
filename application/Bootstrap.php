@@ -77,7 +77,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	}
 
 	/**
-	 *
+	 * Sets various DOM info.
 	 */
 	protected function _initDoctype()
 	{
@@ -97,14 +97,43 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			->headlink()->appendStylesheet('/scripts/jquery-ui-1.8.17/themes/base/jquery-ui.css');
 
 		//Load Scripts
-		$view->headScript()->prependFile('/scripts/crosshairs.js')
-			 ->headScript()->prependFile('/scripts/scripts.kenstowell.net.js')
-			 ->headScript()->prependFile('/scripts/jquery-ui-1.8.17/ui/minified/jquery-ui.min.js')
-			 ->headScript()->prependFile('/scripts/jquery-1.7.1/jquery-1.7.1.js');
-
-
-
+		$view->headScript()->appendFile('/scripts/jquery-1.7.1/jquery-1.7.1.js')
+			->headScript()->appendFile('/scripts/jquery-ui-1.8.17/ui/minified/jquery-ui.min.js')
+			->headScript()->appendFile('/scripts/crosshairs.js')
+			->headScript()->appendFile('/scripts/scripts.kenstowell.net.js');
 	}
 
+	/**
+	 * Sets up access control
+	 */
+	protected function _initAcl()
+	{
+		Zend_Registry::set('acl', $acl = new Zend_Acl());
+
+		$guest_role = new Zend_Acl_role('guest');
+		$admin_role = new Zend_Acl_role('admin');
+		$user_role = new Zend_Acl_role('user');
+
+		$acl->addRole($guest_role);
+		$acl->addRole($user_role);
+		$acl->addRole($admin_role, $guest_role);
+
+		$acl->addResource('default:');
+		$acl->addResource('admin:');
+		$acl->addResource('user:');
+
+		$acl->allow('admin','admin:');
+		$acl->deny(array('guest', 'user'), 'admin:');
+		$acl->allow(array('admin', 'user'),'user:');
+		$acl->deny('guest', 'user:');
+
+		// by default, the public module is allowed. Any eceptions need explicitly denied.
+		$acl->allow(array('guest', 'user', 'admin'), 'default:');
+
+		// setup FC plugin to run the check
+		$acl_plugin = new KTS_Plugins_Acl($acl);
+		$fc = Zend_Controller_Front::getInstance();
+		$fc->registerPlugin($acl_plugin);
+	}
 }
 

@@ -21,6 +21,78 @@
 				</ul>
 			</nav>
 		</header>
+		<section id="side-panel">
+			<section id="side-panel-toggle">
+				<section id="arrow" class="left-arrow">
+				</section>
+			</section>
+			<section id="login-display">
+				<header>
+					<h2>Login</h2>
+				</header>
+				<section id="login-form-wrapper">
+					<form id="login-form" method="post">
+						<fieldset id="login-name-elements">
+							<input id="login-name" type="text" name="login-name" placeholder="Name">
+						</fieldset>
+						<fieldset id="login-password-elements">
+							<input type="password" id="login-password" name="login-password" placeholder="Password">
+						</fieldset>
+						<input type="button" id="login-submit" name="login-submit" value="login">
+					</form>
+				</section>
+				<section id="register">
+					<p>Not a user? Sign up <a href="#">here</a>.</p>
+				</section>
+			</section>
+			<section id="sign-up-display">
+				<header>
+					<h2>Signup!</h2>
+				</header>
+				<section id="sign-up-form-wrapper">
+					<form id="sign-up-form" method="post">
+						<fieldset id="sign-up-name-elements">
+							<input id="sign-up-name" type="text" name="name" placeholder="Name">
+							<input id="sign-up-display-name" type="text" name="display-name" placeholder="Display Name">
+						</fieldset>
+						<fieldset id="sign-up-email-elements">
+							<input type="email" id="sign-up-email-address" name="email-address" placeholder="Email">
+						</fieldset>
+						<fieldset id="sign-up-reason-elements">
+							<input type="text" id="sign-up-reason" name="sign-up-reason" placeholder="Coder? Designer? Curious?">
+						</fieldset>
+						<fieldset id="sign-up-blood-type-elements">
+							<h6>Not-a-Bot:</h6>
+							I
+							<select id="sign-up-bacon" name="bacon">
+								<option value="love">Love</option>
+								<option value="breathe">Breathe</option>
+								<option value="bathe">would bathe in if given opportunity</option>
+								<option value="like" selected="true">Like</option>
+								<option value="dont-care-for">Don't care for</option>
+								<option value="dont-like">Don't like (if that's even possible)</option>
+							</select>
+							bacon.
+						</fieldset>
+						<input type="button" id="sign-up-submit" name="comment-submit" value="sign me up!">
+					</form>
+				</section>
+			</section>
+			<section id="control-panel" style="display: none;">
+
+			</section>
+			<section id="logout-display">
+				<a href="#">Logout</a>
+			</section>
+			<section id="login-error" style="display: none">
+				<h2>Sorry!</h2>
+				<p>
+					It's seems there was a problem logging in to your account.
+					Refresh the page and try again! A message of this issues has been sent
+					to me and I'll look into as soon as I can!
+				</p>
+			</section>
+		</section>
 		<div id="page-wrapper">
 			<?php echo $this->layout()->content; ?>
 		</div>
