@@ -100,7 +100,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headScript()->appendFile('/scripts/jquery-1.7.1/jquery-1.7.1.js')
 			->headScript()->appendFile('/scripts/jquery-ui-1.8.17/ui/minified/jquery-ui.min.js')
 			->headScript()->appendFile('/scripts/crosshairs.js')
-			->headScript()->appendFile('/scripts/scripts.kenstowell.net.js');
+			->headScript()->appendFile('/scripts/scripts.kenstowell.net.js')
+			->headScript()->appendFile('/scripts/epicHelp.js');
 	}
 
 	/**
