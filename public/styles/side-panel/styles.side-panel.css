@@ -17,7 +17,185 @@
 /**********************************************************************************************************************************************************
  * CONTENT       																																																															            *
  *********************************************************************************************************************************************************/
+section#side-panel {
+    min-width: 250px;
+    height: 100%;
+    position:fixed;
+    top:0;
+    right: -250px;
+    background: #4B4B4B;
+    box-shadow: -10px 0 10px black;
+    z-index: 1000;
+    overflow: visible !important;
+}
 
+section#side-panel.admin {
+    width:90%;
+    height: 100%;
+    position:fixed;
+    top:0;
+    right: -90%;
+    background: #4B4B4B;
+    box-shadow: -10px 0 10px black;
+    z-index: 1000;
+}
+
+section#side-panel section#side-panel-toggle {
+    position: relative;
+    top:50%;
+    right:33px;
+    width:25px;
+    height:45px;
+    background: #4B4B4B;
+    border-top:1px solid #98A3A8;
+    border-bottom:1px solid #98A3A8;
+    border-left:1px solid #98A3A8;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    opacity: 1;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+section#side-panel section#arrow.left-arrow{
+    position: relative;
+    top:25%;
+    left:5px;
+    width:0;
+    height:0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid #A89A8A;
+}
+
+section#side-panel section#arrow.right-arrow{
+    position: relative;
+    top:25%;
+    left:9px;
+    width:0;
+    height:0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left:10px solid #A89A8A;
+}
+
+section#side-panel section#control-panel {
+    display: none;
+}
+
+section#side-panel section#login-display {
+    position: absolute;
+    width:250px;
+    top:35%;
+    left:10px;
+    color:#A89A8A;
+    font-family: sofiaprolight;
+}
+
+section#side-panel section#sign-up-display {
+    display: none;
+    position: absolute;
+    width:250px;
+    top:13%;
+    left:10px;
+    color:#A89A8A;
+    font-family: sofiaprolight;
+}
+
+section#side-panel section#logout-display {
+    display: none;
+    position: absolute;
+    top:0;
+    left:95%;
+    font-family: sofiaprolight;
+}
+
+section#side-panel section#back-to-login {
+    display: none;
+    position: absolute;
+    top:-20%;
+    right:6%;
+    font-size: 11px;
+}
+
+section#side-panel section#login-failed {
+    display: none;
+    padding:10px;
+    position: absolute;
+    top:51%;
+    left:0;
+    color:red;
+    width:230px;
+    font-family: sofiaprolight;
+
+}
+
+section#side-panel section#login-error {
+    display: none;
+    padding:10px;
+    position: absolute;
+    top:51%;
+    left:0;
+    color:red;
+    width:230px;
+    font-family: sofiaprolight;
+}
+
+section#side-panel  header{
+    font-family: franchiseregular;
+    color:#A89A8A;
+}
+
+section#side-panel input,
+section#side-panel textarea {
+    width: 72%;
+    font-size: 12px;
+    margin: 1% 0;
+}
+
+section#side-panel  select{
+    width: 50%;
+    font-size: 12px;
+    margin: 1% 1% 3% 1%;
+}
+
+section#side-panel input[type=button]{
+    width: auto;
+    height: auto;
+    max-width: 190px;
+    max-height: 200px;
+    margin: 2% 0;
+    font-size: 10px;
+    padding: 2px 3px;
+    text-align: center;
+    border-width: 2px;
+    background: #333;
+}
+
+section#side-panel input[type=submit]{
+    width: auto;
+    height: auto;
+    max-width: 190px;
+    max-height: 200px;
+    margin: 2% 0;
+    font-size: 10px;
+    padding: 2px 3px;
+    text-align: center;
+    border-width: 2px;
+    background: #333;
+}
+
+section#side-panel .disabled{
+    cursor: default;
+}
+
+span.tool-tip {
+    /*display: inline-block;*/
+    position:relative;
+    top:-3px;
+    right:0;
+    cursor:pointer;
+}
 /**********************************************************************************************************************************************************
  * FOOTER      																																																															            *
  *********************************************************************************************************************************************************/

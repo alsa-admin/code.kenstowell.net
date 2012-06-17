@@ -20,26 +20,21 @@ class Admin_IndexController extends Zend_Controller_Action
 		$auth = Zend_Auth::getInstance();
 		if($auth->hasIdentity())
 		{
-			//get user name
+			//get various user data
 			$user = $auth->getStorage()->read();
-			$this->view->user = $user_model->get_user_by_display_name($user->name);
+			$this->view->display_name = $user_model->get_user_by_display_name($user->name);
+			$this->view->username = $user->name;
+			$this->view->bio = $user_model->get_user_bio($user->name);
+			$this->view->email = $user_model->get_user_by_email($user->name);
 
 			//get user gravatar
-			$email = $user_model->get_user_email($user->name);
+			$email = $user_model->get_user_by_email($user->name);
 			$default = 'http://code.kenstowell.local/images/_admin/avatar-blank.jpg';
 			$size = 80;
-
 			//form gravatar url
 			$this->view->grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
 		}
     }
-
-    public function loginAction()
-    {
-        // action body
-    }
-
-
 }
 
 

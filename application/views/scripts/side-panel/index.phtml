@@ -1,0 +1,91 @@
+
+	<section id="control-panel">
+	</section>
+
+	<section id="login-display">
+		<header>
+			<h2>Login</h2>
+		</header>
+		<section id="login-form-wrapper">
+			<form id="login-form" method="post">
+				<fieldset id="login-name-elements">
+					<input id="login-name" type="text" name="login-name" placeholder="Name">
+				</fieldset>
+				<fieldset id="login-password-elements">
+					<input type="password" id="login-password" name="login-password" placeholder="Password">
+				</fieldset>
+				<input type="button" id="login-submit" name="login-submit" value="login" class="disabled">
+			</form>
+		</section>
+		<section id="register">
+			<p>Not a user? Sign up <a href="#">here</a>.</p>
+		</section>
+	</section>
+
+	<section id="login-failed">
+		<p>
+			Sorry, your username or password was incorrect. Please try again or
+			<a>request to change your password.</a>
+		</p>
+	</section>
+
+	<section id="login-error">
+		<h2>Sorry!</h2>
+		<p>
+			It's seems there was a problem logging in to your account.
+			Refresh the page and try again! A message of this issues has been sent
+			to me and I'll look into as soon as I can!
+		</p>
+	</section>
+
+	<section id="logout-display">
+		<a href="#">Logout</a>
+	</section>
+
+	<section id="sign-up-display">
+		<header>
+			<h2>Signup!</h2>
+		</header>
+		<section id="back-to-login">
+			<a>Login</a>
+		</section>
+		<section id="sign-up-form-wrapper">
+			<form id="sign-up-form" method="post">
+				<fieldset id="sign-up-name-elements">
+					<input id="sign-up-name" type="text" name="name" placeholder="Username (login)" class="required">
+					<input id="sign-up-display-name" type="text" name="display-name" placeholder="Display Name" class="required">
+				</fieldset>
+				<fieldset id="sign-up-email-elements">
+					<input type="email" id="sign-up-email-address" name="email-address" placeholder="Email" class="required">
+				</fieldset>
+				<fieldset id="sign-up-avatar-elements">
+					<input type="text" id="sign-up-avatar" name="avatar" placeholder="Avatar URL">
+					<span class="tool-tip avatar"><img src="/images/index/help" width="12px" height="12px" alt="help"></span>
+				</fieldset>
+				<fieldset id="sign-up-password-elements">
+					<input type="password" id="sign-up-password" name="password" placeholder="Password" class="required">
+					<input type="password" id="sign-up-confirm-password" name="confirm-password" placeholder="Confirm Password" class="required">
+				</fieldset>
+				<fieldset id="sign-up-reason-elements">
+					<input type="text" id="sign-up-reason" name="sign-up-reason" placeholder="Coder? Designer? Curious?">
+				</fieldset>
+				<fieldset id="sign-up-bio-elements">
+					<textarea rows="12" cols="12" name="sign-up-bio" placeholder="Write a short snippet about yourself."></textarea>
+				</fieldset>
+				<fieldset id="sign-up-blood-type-elements">
+					<h6>Not-a-Bot:</h6>
+					I
+					<select id="sign-up-bacon" name="bacon">
+						<option value="love">Love</option>
+						<option value="breathe">Breathe</option>
+						<option value="bathe">would bathe in if given opportunity</option>
+						<option value="like" selected="true">Like</option>
+						<option value="dont-care-for">Don't care for</option>
+						<option value="dont-like">Don't like (if that's even possible)</option>
+					</select>
+					bacon.
+				</fieldset>
+				<input type="button" id="sign-up-submit" name="comment-submit" value="sign me up!" class="disabled">
+			</form>
+		</section>
+	</section>

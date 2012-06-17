@@ -2,9 +2,11 @@
 	//Load global stylesheets
 	$this->headLink()->appendStylesheet('/styles/index/styles.index.css');
 
-	//Load Scripts
+	//Load Scripts - doing it here will ensure that the bootstrap wont load them everytime an ajax action is called
 	$this->headScript()->appendFile('/scripts/index/scripts.index.js');
+	$this->headScript()->appendFile('/scripts/side-panel/scripts.side-panel.js');
 ?>
+
 <section id="home-wrapper" class="container slide">
 	<section id="home" class="content-wrapper row">
 		<div class="onecol gutter"></div>

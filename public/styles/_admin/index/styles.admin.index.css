@@ -27,7 +27,7 @@ section#control-panel {
     height:100%;
 }
 
-section#control-panel section#admin-panel-wrapper header h1{
+section#control-panel section#admin-panel-wrapper>header>h1{
     display: inline-block;
     font-size: 3em;
     text-decoration: underline;
@@ -36,13 +36,181 @@ section#control-panel section#admin-panel-wrapper header h1{
     left:0;
 }
 
-section#control-panel section#admin-panel-wrapper header h2{
+section#control-panel section#admin-panel-wrapper>header>h2{
     display: inline-block;
     font-family: sofiaprolight;
     position: relative;
     top:-14px;
     left:-188px;
     font-size: 1em;
+}
+
+section#admin-content-wrapper {
+    width:80%;
+    height: 100%;
+    text-align: center;
+    margin: 30px auto 0 auto;
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
+section#admin-content-wrapper section.control-accordion {
+    width:90%;
+    background: white;
+    margin:20px 2%;
+    box-shadow: 4px 6px 8px #000;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+section#admin-content-wrapper section.control-accordion header.control-accordion-header {
+    width:100%;
+    height:32px;
+    background: #A89A8A;
+    color: white;
+}
+
+section#admin-content-wrapper section.control-accordion header.control-accordion-header h2 {
+    float: left;
+    margin: 3px 3px;
+}
+
+section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon {
+    width:32px;
+    height:32px;
+    padding: 0;
+    margin:0 0 3px 0;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    /*position: relative;*/
+    /*top:-10px;*/
+    /*left:80%;*/
+}
+
+section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon-expand {
+    background: url('/images/index/icon_expand.png') no-repeat;
+}
+
+section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon-collapse {
+    background: url('/images/index/icon_collapse.png') no-repeat;
+}
+
+section#admin-content-wrapper section.control-accordion section.expanded {
+    display: block;
+}
+
+section#admin-content-wrapper section.control-accordion section.collapsed {
+    display: none;
+}
+
+section#admin-content-wrapper section.control-accordion section.control-accordion-content{
+    max-height: 500px;
+    width:97%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding:10px;
+}
+
+section#profile-admin-content section ul ul {
+     margin: 10px 0 0 0;
+}
+
+section#profile-admin-content section li {
+    list-style-type: none;
+}
+
+section#profile-admin-content section ul li.text-field {
+    /*margin: -20px 0 0 0;*/
+}
+
+section#profile-admin-content ul.update {
+    text-align: center;
+    margin: 0 auto 0 auto;
+}
+
+/**
+ ---------------------------------
+ Profile Administration
+ ---------------------------------
+ */
+section#profile-admin-content section#account-information {
+    text-align: left;
+    float: left;
+    width: 27%;
+}
+
+section#profile-admin-content section#account-information header h4{
+    font-family: sofiaprolight;
+    text-decoration: underline;
+    color:black;
+    margin: 5px 0;
+}
+
+section#profile-admin-content section#account-information ul#account-information-list li.field-label{
+    font-family: sofiaprolight;
+    font-size: 12px;
+}
+
+section#profile-admin-content section#account-information ul#account-information-list input[type="text"],
+section#profile-admin-content section#account-information ul#account-information-list textarea {
+    width:100%;
+}
+
+/* Change Password */
+section#profile-admin-content section#change-password {
+    text-align: left;
+    float: left;
+    width: 27%;
+    margin: 0 0 0 10%;
+}
+
+section#profile-admin-content section#change-password header h4{
+    font-family: sofiaprolight;
+    text-decoration: underline;
+    color:black;
+    margin: 5px 0;
+}
+
+section#profile-admin-content section#change-password ul#change-password-list li.field-label{
+    font-family: sofiaprolight;
+    font-size: 12px;
+}
+
+section#profile-admin-content section#change-password ul#change-password-list input[type="password"],
+section#profile-admin-content section#change-password ul#change-password-list textarea {
+    width:100%;
+}
+
+/* Avatar */
+section#profile-admin-content section#avatar {
+    text-align: left;
+    float: right;
+    width: 27%;
+    font-family: sofiaprolight;
+}
+
+section#profile-admin-content section#avatar header h4{
+    font-family: sofiaprolight;
+    text-decoration: underline;
+    color:black;
+    margin: 5px 0;
+}
+
+section#profile-admin-content section#avatar ul#avatar-list li.field-label{
+    font-family: sofiaprolight;
+    font-size: 12px;
+}
+
+section#profile-admin-content section#avatar ul#avatar-list input[type="text"],
+section#profile-admin-content section#avatar ul#avatar-list textarea {
+    width:100%;
+}
+
+section#profile-admin-content section#avatar ul#avatar-list li.avatar-img {
+    position: relative;
+    top:16px;
+    left:70%;
 }
 /**********************************************************************************************************************************************************
  * FOOTER      																																																															            *

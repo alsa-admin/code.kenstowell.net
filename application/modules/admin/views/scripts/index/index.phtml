@@ -1,4 +1,131 @@
-<header>
-	<img class="avatar" src="<?php echo $this->grav_url?>" alt="avatar">
-	<h1><?php echo $this->user; ?></h1>
-</header>
+
+<section id="admin-panel-wrapper">
+	<header>
+		<img src="<?php echo $this->grav_url; ?>" alt="avatar-img" width="80px" height="80px">
+		<h1><?php echo $this->display_name; ?></h1>
+		<h2>Admin Control Menu</h2>
+	</header>
+	<section id="admin-content-wrapper">
+		<section id="profile-admin" class="control-accordion">
+			<header class="control-accordion-header">
+				<h2>Profile Administration</h2>
+				<span class="icon icon-collapse"></span>
+			</header>
+			<section id="profile-admin-content" class="control-accordion-content expanded">
+				<section id="account-information">
+					<header>
+						<h4>Account Information</h4>
+					</header>
+					<ul id="account-information-list">
+						<li>
+							<ul id="username">
+								<li class="field-label">Username:</li>
+								<li class="text-field"><input type="text" value="<?php echo $this->username; ?>"</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="display-name">
+								<li class="field-label">Display Name:</li>
+								<li class="text-field"><input type="text" value="<?php echo $this->display_name; ?>"</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="email">
+								<li class="field-label">Email:</li>
+								<li class="text-field"><input type="text" value="<?php echo $this->email; ?>"</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="bio">
+								<li class="field-label">Bio:</li>
+								<li class="text-field"><textarea rows=12 cols="18"><?php echo $this->bio; ?></textarea></li>
+							</ul>
+						</li>
+						<li>
+							<ul class="update">
+								<li><input type="button" value="update"></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="change-password">
+					<header>
+						<h4>Change Password</h4>
+					</header>
+					<ul id="change-password-list">
+						<li>
+							<ul id="current-password">
+								<li class="field-label">Current Password:</li>
+								<li class="text-field"><input type="password" name="current-password" value=""</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="new-password">
+								<li class="field-label">New Password:</li>
+								<li class="text-field"><input type="password" name="new-paswword" value=""</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="confirm-password">
+								<li class="field-label">Confirm Password:</li>
+								<li class="text-field"><input type="password" name="password-confirmation"></li>
+							</ul>
+						</li>
+						<li>
+							<ul class="update">
+								<li><input type="button" value="update"></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="avatar">
+					<header>
+						<h4>Avatar</h4>
+					</header>
+					<ul id="avatar-list">
+						<li>
+							<ul id="current-avatar">
+								<li class="avatar-img"><img src="<?php echo $this->current_avatar; ?>" alt="current avatar" width="80px" height="80px"></li>
+								<li class="field-label">Current Avatar:</li>
+								<li class="text-field"><input type="text" name="current-avatar-url"></li>
+							</ul>
+						</li>
+						<li>
+							<ul id="new-avatar">
+								<li class="avatar-img"><img src="/images/_admin/avatar-blank.jpg" alt="blank avatar" width="80px" height="80px"></li>
+								<li class="field-label">New Avatar:</li>
+								<li class="text-field"><input type="text" name="new-avatar-url" value=""></li>
+							</ul>
+						</li>
+						<li>
+							Avatars are restriced to remotely linkable files.
+						</li>
+						<li>
+							<ul class="update">
+								<li><input type="button" value="update"></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</section>
+		<section id="user-admin" class="control-accordion">
+			<header class="control-accordion-header">
+				<h2>User Administration</h2>
+				<span class="icon icon-expand"></span>
+			</header>
+			<section id="user-admin-content" class="control-accordion-content collapsed">
+
+			</section>
+		</section>
+		<section id="blog-admin" class="control-accordion">
+			<header class="control-accordion-header">
+				<h2>Blog Administration</h2>
+				<span class="icon  icon-expand"></span>
+			</header>
+			<section id="blog-admin-content" class="control-accordion-content collapsed">
+
+			</section>
+		</section>
+	</section>
+</section>

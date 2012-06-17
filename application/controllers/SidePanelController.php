@@ -17,8 +17,6 @@ class SidePanelController extends Zend_Controller_Action
     /**
      * LOGIN
      *
-     *
-     *
      */
     public function loginAction()
     {
@@ -32,7 +30,7 @@ class SidePanelController extends Zend_Controller_Action
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$authAdapter = new Zend_Auth_Adapter_DbTable($db, 'users', 'name', 'password');
 		$authAdapter->setIdentity($data['user']);
-		$authAdapter->setCredential($data['password']);
+		$authAdapter->setCredential(md5($data['password']));
 
 		//authenticate
 		$result = $authAdapter->authenticate();
@@ -56,21 +54,62 @@ class SidePanelController extends Zend_Controller_Action
 		}
     }
 
-	/**
-	 * LOGOUT
-	 */
+    /**
+     * LOGOUT
+     *
+     */
     public function logoutAction()
     {
+		$this->_helper->layout()->disableLayout();
+
         $auth = Zend_Auth::getInstance();
-		if($auth->clearIdentity()) {
-			echo json_encode('success');
+		$auth->clearIdentity();
+
+		if ($auth->hasIdentity()) {
+			echo json_encode(false);
 		} else {
-			echo json_encode('failed');
+			echo json_encode(true);
 		}
     }
 
+	/**
+	 * SIGN UP
+	 */
+    public function signUpAction()
+    {
+		//disable layout
+		$this->_helper->layout()->disableLayout();
 
+		$data = $_POST;
+
+		$user_model = new Model_Users();
+		$new_user = $user_model->add_user($data['username'], $data['display_name'], $data['email'], $data['password'], $data['avatar'], $data['reason'], $data['bio']);
+
+		echo json_encode($new_user);
+
+    }
+
+	/**
+	 * CHECK AVAILABILITY
+	 */
+    public function checkAvailabilityAction()
+    {
+        $this->_helper->layout()->disableLayout();
+
+		$data = $_POST;
+		$user_model = new Model_Users();
+		$name = $user_model->get_user_by_name($data['username']);
+
+		if ($name == null) {
+			echo json_encode(true);
+		} else {
+			echo json_encode(false);
+		}
+
+    }
 }
+
+
 
 
 

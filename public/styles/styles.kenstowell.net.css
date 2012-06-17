@@ -1,18 +1,24 @@
 /**********************************************************************************************************************************************************
  * IMPORTED STYLES																																																																        *
  *********************************************************************************************************************************************************/
+
+/* Libraries, plugins and frameworks */
 @import url('1140/1140.css');
 @import url('1140/ie.css');
 @import url('1140/styles.css');
+@import url('epicHelp/styles.css');
 
+/* Page styles: default */
 @import url('services/styles.services.css');
 @import url('work/styles.work.css');
 @import url('blog/styles.blog.css');
 @import url('tutorials/styles.tutorials.css');
 @import url('code/styles.code.css');
 @import url('contact/styles.contact.css');
+@import url('side-panel/styles.side-panel.css');
 
-@import url('_admin/index/styles.index.css');
+/* Page styles: admin */
+@import url('_admin/index/styles.admin.index.css');
 
 /**********************************************************************************************************************************************************
 * FONT KITS																																																														                  *
@@ -40,6 +46,8 @@ body {
 a {
     color:#98A3A8;
     text-decoration: none;
+    cursor: pointer;
+    outline: none;
 }
 
 /**********************************************************************************************************************************************************
@@ -90,118 +98,32 @@ div#page-wrapper {
     left:0;
 }
 
-/**********************************************************************************************************************************************************
-* SIDE-PANEL                                                                                                                                                      *
-*********************************************************************************************************************************************************/
-section#side-panel {
-    position:fixed;
-    top:0;
-    /*right: 0;*/
-    background: #4B4B4B;
-    box-shadow: -10px 0 10px black;
-    z-index: 1000;
-}
-
-section#side-panel section#side-panel-toggle {
-    position: relative;
-    top:50%;
-    right:33px;
-    width:25px;
-    height:45px;
-    background: #4B4B4B;
-    border-top:1px solid #98A3A8;
-    border-bottom:1px solid #98A3A8;
-    border-left:1px solid #98A3A8;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    opacity: 1;
-    z-index: -1;
-    cursor: pointer;
-}
-
-section#side-panel section#arrow.left-arrow{
-    position: relative;
-    top:25%;
-    left:5px;
-    width:0;
-    height:0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right:10px solid #A89A8A;
-}
-
-section#side-panel section#arrow.right-arrow{
-    position: relative;
-    top:25%;
-    left:9px;
-    width:0;
-    height:0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left:10px solid #A89A8A;
-}
-
-section#side-panel section#login-display {
+section#loader {
     display: none;
-    position: relative;
-    top:25%;
-    left:10px;
-    color:#A89A8A;
-    font-family: sofiaprolight;
-}
-
-section#side-panel section#sign-up-display {
-    display: none;
-    position: relative;
-    top:25%;
-    left:10px;
-    color:#A89A8A;
-    font-family: sofiaprolight;
-}
-
-section#side-panel section#logout-display {
-    position: relative;
-    top:0;
+    position: fixed;
+    top: 38%;
     left:0;
-    font-family: sofiaprolight;
+    padding: 25px 10px;
+    margin: 0;
+    width:100%;
+    background-color: #000;
+    opacity: .8;
+    z-index: 11000;
 }
 
-section#side-panel  header{
-    font-family: franchiseregular;
-    color:#A89A8A;
-}
-
-section#side-panel  input{
-    width: 72%;
-    font-size: 12px;
-    margin: 1% 0;
-}
-
-section#side-panel  select{
-    width: 50%;
-    font-size: 12px;
-    margin: 1% 1% 3% 1%;
-}
-
-section#side-panel input[type=button]{
-    width: auto;
-    height: auto;
-    max-width: 190px;
-    max-height: 200px;
-    margin: 2% 0;
-    font-size: 10px;
-    padding: 2px 3px;
+section#loader img {
     text-align: center;
-    border-width: 2px;
-    background: #333;
-}
-
-section#side-panel .disabled{
-    cursor: default;
+    width: auto;
+    margin: 0  47.5%;
+    display: inline-block;
 }
 /**********************************************************************************************************************************************************
 * FORM ELEMENTS      																																	  *
 **********************************************************************************************************************************************************/
+input {
+    outline: none;
+}
+
 input[type=text] {
     /*line-height: 1.4em;*/
     /*height: 2.4em;*/
@@ -253,9 +175,26 @@ input[type=button]{
     word-wrap: break-word;
 }
 
+input[type=submit]{
+    color: #98A3A8;
+    padding:4px;
+    font-family: codeprodemoregular;
+    font-size: 14px;
+    border: 3px solid  #98A3A8;
+    border-radius: 6px;
+    background: #4b4b4b;
+    cursor: pointer;
+    word-wrap: break-word;
+}
+
 input[type=button]:hover{
     color:white;
     border: 3px solid #A89A8A;
+}
+
+input.disabled:hover{
+    color: #98a3a8;
+    border: 3px solid  #98A3A8;
 }
 
 select {
@@ -287,6 +226,13 @@ label {
     font-size: 14px;
 }
 
+input.passed-validation {
+    border-color: green;
+}
+
+input.failed-validation {
+    border-color: red;
+}
 /**********************************************************************************************************************************************************
  * FOOTER
  *********************************************************************************************************************************************************/
