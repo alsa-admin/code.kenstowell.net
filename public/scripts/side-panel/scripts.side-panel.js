@@ -94,6 +94,15 @@ var global_id; //session value placeholder
 			var self = this;
 
 			//------------------------------
+			// Global SidePanel events
+			//------------------------------
+
+			// '.required' validation
+			$('.required').live('focusout', function() {
+				self.validateElement($(this).closest('section'), $(this));
+			});
+
+			//------------------------------
 			// side panel display mechanism
 			//------------------------------
 			$('section#side-panel-toggle').live('click', function(e) {
@@ -136,12 +145,6 @@ var global_id; //session value placeholder
 				}
 			});
 
-			//pre-validate info
-			$('form#login-form input[type="text"], form#login-form input[type="password"]').live('focusout', function() {
-				self.validateLogin(this);
-			});
-
-
 			//------------------------------
 			// logout
 			//------------------------------
@@ -174,27 +177,6 @@ var global_id; //session value placeholder
 					//fade in login content after fadeout conplete
 					$('section#login-display').fadeIn(600);
 				});
-			});
-
-			//generic required field check
-			$('.required').live('focusout', function() {
-				if($(this).val() == '' || $(this).val() == undefined) {
-					//make it red
-					$(this).addClass('failed-validation').removeClass('passed-validation');
-					//prevent form from being submitted
-					$('input#sign-up-submit').addClass('disabled');
-				} else {
-					//make it red
-					$(this).removeClass('failed-validation').addClass('passed-validation');
-					//now check and see if there are any other required with empty values
-					if($('.required').val() == '' || $('.required').val() == undefined) {
-						//prevent form from being submitted
-						$('input#sign-up-submit').addClass('disabled');
-					} else {
-						//prevent form from being submitted
-						$('input#sign-up-submit').removeClass('disabled');
-					}
-				}
 			});
 
 			//------------------------------
@@ -380,33 +362,42 @@ var global_id; //session value placeholder
 		login: function(user, password) {
 			var self = this;
 
-			console.log(user, password);
-			//call the login acition
-			$.ajax({
-				url: '/side-panel/login',
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					user: user,
-					password: password
-				},
-				beforeSend: function() {
-					kts.show_loader('show');
-				},
-				success: function(data) {
+			if((user == '' || user == undefined) || (password == '' || password == undefined)) {
+				$('form#login-form input').each(function() {
+					//loop through each one to check the value
+					if($(this).val() == '' || $(this).val() == undefined) {
+						//set some reminder placeholder text
+						$(this).addClass('failed-validation').attr('placeholder', 'forget something?');
+					}
+				});
+			} else {
+				$.ajax({
+					url: '/side-panel/login',
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						user: user,
+						password: password
+					},
+					beforeSend: function() {
+						kts.show_loader('show');
+						//need to do this to accommodate for previously failed logins.
+						$('section#login-failed, section#login-error').fadeOut(400);
+					},
+					success: function(data) {
 						if(data === 'admin'){
 							$('section#login-display, section#login-failed, section#login-error').fadeOut(600, function() {
 								//load admin content
 								$('section#control-panel').load('admin/index/index', function() {
-										kts.show_loader('hide');
-										$(this).parent().parent().animate({
-											'width' : '90%'
-										}, 1500, function() {
-											$('section#control-panel, section#logout-display').fadeIn(800, function() {
-												//set global id to admin
-												global_id = 'admin';
-											});
+									kts.show_loader('hide');
+									$(this).parent().parent().animate({
+										'width' : '90%'
+									}, 1500, function() {
+										$('section#control-panel, section#logout-display').fadeIn(800, function() {
+											//set global id to admin
+											global_id = 'admin';
 										});
+									});
 								});
 							});
 						} else if(data === 'user') {
@@ -424,16 +415,19 @@ var global_id; //session value placeholder
 								});
 							});
 						} else {
+							kts.show_loader('hide');
 							//make it red
-							$('form#login-form input[type="text"], form#login-form input[type="password"]').addClass('failed-validation');
+							$('form#login-form input[type="text"], form#login-form input[type="password"]').addClass('failed-validation').val('')
+								.attr('placeholder', 'incorrect :(');
 							//bring in login-failed section
 							$('section#login-failed').fadeIn(600);
 						}
-				},
-				error: function() {
+					},
+					error: function() {
 
-				}
-			});
+					}
+				});
+			}
 		},
 		/**
 		 * SIGNUP
@@ -443,12 +437,7 @@ var global_id; //session value placeholder
 
 			//if the elem is disabled
 			if($(elem).is('.disabled')) {
-				//toggle validation on all that are required but not filled
-				$('.required').each(function() {
-					if($(this).val() == '' || $(this).val() == undefined) {
-						$(this).addClass('failed-validation');
-					}
-				});
+
 			} else {
 				//add user
 				$.ajax({
@@ -525,42 +514,108 @@ var global_id; //session value placeholder
 		comparePasswords: function(elem) {
 			var self = this;
 
-			//Check the value of confirm password against
-			if($(elem).val() !== $('input#sign-up-password').val() || $(elem).val() == undefined ) {
+			//first check to see if it's empty
+			if($(elem).val() !== '' && $(elem).val() !== undefined) {
+				//Check the value of confirm password against
+				if($(elem).val() !== $('input#sign-up-password').val()) {
+					//toggle classes
+					$('fieldset#sign-up-password-elements input').removeClass('passed-validation').addClass('failed-validation');
+					//prevent form from being submitted
+					$('input#sign-up-submit').addClass('disabled');
+				} else {
+					//toggle classes
+					$('fieldset#sign-up-password-elements input').addClass('passed-validation').removeClass('failed-validation');
+					//allow form to besubmitted
+					$('input#sign-up-submit').removeClass('disabled');
+				}
+			} else {
 				//toggle classes
 				$('fieldset#sign-up-password-elements input').removeClass('passed-validation').addClass('failed-validation');
 				//prevent form from being submitted
 				$('input#sign-up-submit').addClass('disabled');
-			} else {
-				//toggle classes
-				$('fieldset#sign-up-password-elements input').addClass('passed-validation').removeClass('failed-validation');
-				//allow form to besubmitted
-				$('input#sign-up-submit').removeClass('disabled');
 			}
 		},
 		/**
 		 * VALIDATE LOGIN.
 		 * @desc: validates form fields before sending them to the application
 		 */
-		validateLogin: function(elem) {
+		validateElement: function(container, elem) {
 			var self = this;
 
 			if($(elem).val() !== '' && $(elem).val() !== undefined) {
 				$(elem).removeClass('failed-validation').addClass('passed-validation');
-				//enable login
-				$('input#login-submit').removeClass('disabled');
 			} else {
 				$(elem).addClass('failed-validation').removeClass('passed-validation');
-				//enable login
-				$('input#login-submit').addClass('disabled');
 			}
+
+			//final check required elements' form submission
+			(function() {
+				$(container).children().find('.required').each(function() {
+					if($(this).val() == '' || $(this).val() == undefined) {
+						$(container).children().find('input[type=button]').addClass('disabled')
+					} else {
+						$(container).children().find('input[type=button]').removeClass('disabled');
+					}
+				});
+			})();
+		},
+		/**
+		 * RECOVER USERNAME
+		 */
+		recover_username: function() {
+			var self = this;
+
+			$('section#login-display, section#login-failed').fadeOut(600, function() {
+				$('section#forgot-username').fadeIn(600, function() {
+					$('input#forgot-username-submit').live('click', function() {
+						$.ajax({
+							url: '/side-panel/recover-login/username',
+							type: 'post',
+							dataType: 'json',
+							data : {
+								email: ($('input[name=forgot-username]').val() == '')? 	$('input[name=forgot-username]').addClass('failed-validation') : $('input[name=forgot-username]').val()
+							},
+							beforeSend: function() {
+								kts.show_loader('show');
+							},
+							success: function() {
+								kts.show_loader('hide');
+							}
+						});
+					});
+				});
+			});
+		},
+		/**
+		 * RECOVER PASSWORD
+		 */
+		recover_password: function() {
+			var self = this;
+
+			$('section#login-display, section#login-failed').fadeOut(600, function() {
+				$('section#forgot-password').fadeIn(600, function() {
+					$('input#forgot-password-submit').live('click', function() {
+						$.ajax({
+							url: '',
+							type: 'post',
+							dataType: 'json',
+							data : {
+								email: ($('input[name=forgot-password]').val() == '')? 	self.validateElement($('input[name=forgot-password]')): $('input[name=forgot-password]').val()
+							},
+							beforeSend: function() {
+								kts.show_loader('show');
+							},
+							success: function() {
+
+							}
+						});
+					});
+				});
+			});
 		}
 	};
 
 	//instantiate the object and push it to the window object
 	new SidePanel();
 })();
-
-
-/************************************************************* END ***************************************************************************************/ 
-
+/************************************************************* END ***************************************************************************************/
