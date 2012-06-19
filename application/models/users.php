@@ -57,6 +57,25 @@ class Model_Users extends Zend_Db_Table_Abstract
 	}
 
 	/**
+	 * GET COMPLETE USER INFO
+	 *
+	 * @param $field
+	 * @param $data
+	 * @return array
+	 */
+	public function get_complete_user_info($field, $data)
+	{
+
+
+		$row = $this->select()->from('users')->where($field.'= ?', $data);
+		$query = $row->query();
+		$data_set = $query->fetchAll();
+
+		return $data_set;
+
+	}
+
+	/**
 	 * GET USER BY DISPLAY NAME
 	 * @desc: gets user from Zend Auth and returns the display name
 	 * @param $user_name

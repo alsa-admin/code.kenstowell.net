@@ -193,6 +193,17 @@ var global_id; //session value placeholder
 			});
 
 			//------------------------------
+			// Forgot Login
+			//------------------------------
+			$('a#forgot-username').live('click', function() {
+				self.recover_username();
+			});
+
+			$('a#forgot-password').live('click', function() {
+				self.recover_password();
+			});
+
+			//------------------------------
 			// Not-a-bot
 			//------------------------------
 			$('select#sign-up-bacon').live('change', function(e) {

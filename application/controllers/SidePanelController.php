@@ -107,6 +107,26 @@ class SidePanelController extends Zend_Controller_Action
 		}
 
     }
+
+	/**
+	 *
+	 */
+	public function recoverLoginAction($type)
+	{
+		$user_model = new Model_Users();
+
+		if($type == 'username') {
+			$email = $_POST['email'];
+			$username = $user_model->get_complete_user_info('email', $email);
+			json_encode($username);
+
+		}
+	}
+
+	public function sendEmail($email, $data)
+	{
+
+	}
 }
 
 

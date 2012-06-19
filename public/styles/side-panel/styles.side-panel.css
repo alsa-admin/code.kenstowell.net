@@ -122,9 +122,8 @@ section#side-panel section#login-failed {
     display: none;
     padding:10px;
     position: absolute;
-    top:51%;
+    top:53%;
     left:0;
-    color:red;
     width:230px;
     font-family: sofiaprolight;
 
@@ -139,6 +138,23 @@ section#side-panel section#login-error {
     color:red;
     width:230px;
     font-family: sofiaprolight;
+}
+
+section#side-panel section.recover-login {
+    display: none;
+    position: absolute;
+    top:35%;
+    padding: 10px;
+    font-family: sofiaprolight;
+    color:#a89a8a;
+}
+
+section#side-panel section.recover-login ul li{
+    list-style-type: none;
+}
+
+section#side-panel section.recover-login ul li:nth-child(2){
+    margin: 8px 0 0 0;
 }
 
 section#side-panel  header{

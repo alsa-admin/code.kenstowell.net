@@ -24,8 +24,7 @@
 
 	<section id="login-failed">
 		<p>
-			Sorry, your username or password was incorrect. Please try again or
-			<a>request to change your password.</a>
+			Forgot your <a id="forgot-username">username</a> or <a id="forgot-password">password?</a>
 		</p>
 	</section>
 
@@ -36,6 +35,22 @@
 			Refresh the page and try again! A message of this issues has been sent
 			to me and I'll look into as soon as I can!
 		</p>
+	</section>
+
+	<section id="forgot-username" class="recover-login">
+		<ul>
+			<li>The username associated with this email will be delivered to your inbox.</li>
+			<li><input type="email" name="forgot-username" class="required" placeholder="email address"></li>
+			<li><input type="button" name="forgot-username-submit" value="email me"></li>
+		</ul>
+	</section>
+
+	<section id="forgot-password" class="recover-login">
+		<ul>
+			<li>Instructions on how to recover the password associated with this email will be sent to your inbox.</li>
+			<li><input type="email" name="forgot-password" class="required" placeholder="email address"></li>
+			<li><input type="button" name="forgot-password-submit" value="email me"></li>
+		</ul>
 	</section>
 
 	<section id="logout-display">
