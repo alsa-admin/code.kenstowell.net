@@ -19,7 +19,7 @@ var global_id; //session value placeholder
  *
  *
  */
-(function () {
+(function (global) {
 	/**
 	 * OBJECT CONSTRUCTOR
 	 */
@@ -63,26 +63,26 @@ var global_id; //session value placeholder
 			}
 			//user content
 			else if(id === 'user') {
-				console.log('hai again')
+
 				$('section#control-panel').load('user/index/index', function() {
 					$('section#side-panel').addClass('admin').children().find('section#login-display').hide();
 				});
 			} else {
-				console.log('no id', this);
+
 			}
 
 			//------------------------------
 			// Document Ready
 			//------------------------------
 			$(document).ready(function () {
-				console.log($('section#side-panel').width());
+
 			});
 
 			//------------------------------
 			// Window Load
 			//------------------------------
 			$(window).load(function () {
-				console.log($('section#side-panel').width());
+
 			});
 		},
 		/**
@@ -245,8 +245,19 @@ var global_id; //session value placeholder
 						}).addClass('disabled');
 						break;
 				}
-			});
 
+				//------------------------------
+				// Profile Admin
+				//------------------------------
+				$('input[name=current-password]').live('focusout', function() {
+					self.checkCurrentPassword(this);
+				});
+
+				//update button
+				$('input.profile-update').live('click', function() {
+					self.updateUserInfo(this);
+				});
+			});
 		},
 		/**
 		 * CHECK IDENTITY
@@ -283,7 +294,7 @@ var global_id; //session value placeholder
 
 			//Fix for non existent 'right' value
 			$(elem).css({
-				'right' : -$(elem).width()
+				'right' : -$(elem).width() // TODO: this is kind an ugly hack - find a better way to do this.
 			});
 
 			//Open the SidePanel
@@ -304,8 +315,8 @@ var global_id; //session value placeholder
 		/**
 		 * DISPOSE CONTENT
 		 * @desc: This collapses the side panel and clears all markup.
-		 * 				if an action is provided, then proceed accordingly.
-		 * @param action
+		 *
+		 * @param elem
 		 */
 		disposeContent: function(elem) {
 			var self = this;
@@ -343,7 +354,7 @@ var global_id; //session value placeholder
 					kts.show_loader('show');
 				},
 				error: function(xhr) {
-					console.log(xhr)
+
 				},
 				success: function(data) {
 					kts.show_loader('hide');
@@ -464,10 +475,13 @@ var global_id; //session value placeholder
 						reason: $('input[name="sign-up-reason"]').val(),
 						bio: $('textarea[name="sign-up-bio"]').val()
 					},
+					beforeSend: function() {
+						kts.show_loader('show');
+					},
 					error: function(xhr) {
-						console.log(xhr);
 					},
 					success: function(data) {
+						kts.show_loader('hide');
 						$('section#sign-up-display').fadeOut(600, function() {
 							//if the user was successfulyl added: log them in
 							self.login($('input[name="name"]').val(), $('input[name="password"]').val());
@@ -522,28 +536,31 @@ var global_id; //session value placeholder
 		 * COMPARE PASSWORDS
 		 * @param elem
 		 */
-		comparePasswords: function(elem) {
+		comparePasswords: function(elem, comparator, submit) {
 			var self = this;
 
 			//first check to see if it's empty
 			if($(elem).val() !== '' && $(elem).val() !== undefined) {
 				//Check the value of confirm password against
-				if($(elem).val() !== $('input#sign-up-password').val()) {
+				if($(elem).val() !== $(comparator).val()) {
 					//toggle classes
-					$('fieldset#sign-up-password-elements input').removeClass('passed-validation').addClass('failed-validation');
+					$(elem).removeClass('passed-validation').addClass('failed-validation');
+					$(comparator).removeClass('passed-validation').addClass('failed-validation');
 					//prevent form from being submitted
-					$('input#sign-up-submit').addClass('disabled');
+					$(submit).addClass('disabled');
 				} else {
 					//toggle classes
-					$('fieldset#sign-up-password-elements input').addClass('passed-validation').removeClass('failed-validation');
+					$(elem).addClass('passed-validation').removeClass('failed-validation');
+					$(comparator).addClass('passed-validation').removeClass('failed-validation');
 					//allow form to besubmitted
-					$('input#sign-up-submit').removeClass('disabled');
+					$(submit).removeClass('disabled');
 				}
 			} else {
 				//toggle classes
-				$('fieldset#sign-up-password-elements input').removeClass('passed-validation').addClass('failed-validation');
+				$(elem).removeClass('passed-validation').addClass('failed-validation');
+				$(comparator).removeClass('passed-validation').addClass('failed-validation');
 				//prevent form from being submitted
-				$('input#sign-up-submit').addClass('disabled');
+				$(submit).addClass('disabled');
 			}
 		},
 		/**
@@ -576,22 +593,28 @@ var global_id; //session value placeholder
 		recover_username: function() {
 			var self = this;
 
-			$('section#login-display, section#login-failed').fadeOut(600, function() {
-				$('section#forgot-username').fadeIn(600, function() {
-					$('input#forgot-username-submit').live('click', function() {
-						$.ajax({
-							url: '/side-panel/recover-login/username',
-							type: 'post',
-							dataType: 'json',
-							data : {
-								email: ($('input[name=forgot-username]').val() == '')? 	$('input[name=forgot-username]').addClass('failed-validation') : $('input[name=forgot-username]').val()
-							},
-							beforeSend: function() {
-								kts.show_loader('show');
-							},
-							success: function() {
-								kts.show_loader('hide');
-							}
+			$('section#login-display').fadeOut(600, function() {
+				$('section#login-failed').fadeOut(600, function() {
+					$('section#forgot-username').fadeIn(600, function() {
+						$('input[name=forgot-username-submit]').click(function() {
+							$.ajax({
+								url: '/side-panel/recover-login',
+								type: 'post',
+								dataType: 'json',
+								data : {
+									type: 'username',
+									email: $('input[name=forgot-username]').val()
+								},
+								beforeSend: function() {
+									kts.show_loader('show');
+								},
+								success: function() {
+									kts.show_loader('hide');
+									$('section#forgot-username').fadeOut(600, function() {
+										$('section#login-recovered').fadeIn(600);
+									});
+								}
+							});
 						});
 					});
 				});
@@ -603,30 +626,167 @@ var global_id; //session value placeholder
 		recover_password: function() {
 			var self = this;
 
-			$('section#login-display, section#login-failed').fadeOut(600, function() {
-				$('section#forgot-password').fadeIn(600, function() {
-					$('input#forgot-password-submit').live('click', function() {
-						$.ajax({
-							url: '',
-							type: 'post',
-							dataType: 'json',
-							data : {
-								email: ($('input[name=forgot-password]').val() == '')? 	self.validateElement($('input[name=forgot-password]')): $('input[name=forgot-password]').val()
-							},
-							beforeSend: function() {
-								kts.show_loader('show');
-							},
-							success: function() {
-
-							}
+			$('section#login-display').fadeOut(600, function() {
+				$('section#login-failed').fadeOut(600, function() {
+					$('section#forgot-password').fadeIn(600, function() {
+						$('input[name=forgot-password-submit]').click(function() {
+							$.ajax({
+								url: '/side-panel/recover-login',
+								type: 'post',
+								dataType: 'json',
+								data : {
+									type: 'password',
+									email: $('input[name=forgot-password]').val()
+								},
+								beforeSend: function() {
+									kts.show_loader('show');
+								},
+								success: function() {
+									kts.show_loader('hide');
+									$('section#forgot-password').fadeOut(600, function() {
+										$('section#login-recovered').fadeIn(600);
+									});
+								}
+							});
 						});
 					});
 				});
+			});
+		},
+		/**
+		 * CHECK CURRENT PASSWORD
+		 *
+		 */
+		checkCurrentPassword: function(elem) {
+			var self = this;
+
+			$.ajax({
+				url: '/side-panel/confirm-password',
+				dataType: 'json',
+				type: 'post',
+				data: {
+					password: $(elem).val(),
+					name: $('input[name=credential]').val()
+				},
+				beforeSend: function() {
+					kts.show_loader('show');
+				},
+				success: function(data) {
+					kts.show_loader('hide');
+					if(data == true) {
+						$(elem).addClass('passed-validation').removeClass('failed-validation');
+						$(elem).closest('section').children().find('.profile-update').removeClass('disabled');
+					} else {
+						$(elem).addClass('failed-validation').removeClass('passed-validation');
+						$(elem).closest('section').children().find('.profile-update').addClass('disabled');
+					}
+				}
+			});
+		},
+		/**
+		 * UPDATE USER INFO
+		 */
+		updateUserInfo: function(elem) {
+			var self = this;
+			var container = $(elem).closest('section');
+
+			//object to send to controller action
+			method_data = {
+				credential: $('input[name=credential]').val(),
+				name: null,
+				display_name: null,
+				email_address: null,
+				password: null,
+				avatar_url: null,
+				bio: null
+			};
+
+			if($(elem).is('.disabled') == false && $(container).children().find('.failed-validation').length <= 0) {
+				//iterate through child input/text area elemnts
+				$(container).children().find('input, textarea').not('input[type=button]').each(function() {
+					var base = this;
+					//element specification
+					var name = $(this).attr('name');
+					//Object corroboration
+					if (method_data.hasOwnProperty(name)) {
+						if($(base).val() != null && $(base).val() != undefined) {
+							method_data[name] = $(base).val();
+						}
+					}
+				});
+
+				//make the ajax call
+				$.ajax({
+					url: '/side-panel/update-user-info',
+					dataType: 'json',
+					type: 'POST',
+					data: method_data,
+					beforeSend: function() {
+						kts.show_loader('show');
+						console.log(method_data)
+						$('.passed-validation').removeClass('passed-validation');
+					},
+					error: function(xhr) {
+
+					},
+					success: function(data) {
+						kts.show_loader('hide');
+						if(data[0] == true) {
+
+							$.each(data[1], function(key, val) {
+								var updated = $(container).children().find('input, textarea');
+								$(updated).each(function(idx, itm) {
+									if($(this).attr('name') == key) {
+										$(this).addClass('passed-validation');
+										self.updateInterface(data[1])
+									}
+								});
+							});
+						}
+					}
+				});
+			}
+		},
+		/**
+		 * UPDATE INTERFACE
+		 */
+		updateInterface: function(obj) {
+			var self = this;
+
+			//loop through each object property to find correlating DOM elements
+			$.each(obj, function(key, val) {
+				var elem = $('section#control-panel').find('.'+key);
+				if($(elem).is('img')) {
+					if(val == '' || val == undefined || val == null) {
+						$.ajax({
+							url: '/side-panel/build-avatar-url',
+							type: 'post',
+							dataType: 'json',
+							data: {
+								email: $('section#control-panel input[name=email_address]').val()
+							},
+							success: function(data) {
+								$(elem).attr('src', data);
+								$('input[name=current-avatar-url]').val(data);
+							}
+						})
+					} else {
+						console.log(val);
+						$(elem).attr('src', val);
+						$('input[name=current-avatar-url]').val(val);
+						$('input[name=avatar_url]').val('');
+					}
+				} else if($(elem).is('input')) {
+					$(elem).val(val);
+				} else {
+					$(elem).html(val);
+				}
 			});
 		}
 	};
 
 	//instantiate the object and push it to the window object
-	new SidePanel();
-})();
+	var SP = new SidePanel();
+	window.SP = SP;
+})(window);
 /************************************************************* END ***************************************************************************************/

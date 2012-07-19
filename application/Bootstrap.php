@@ -58,6 +58,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'model' => array(
 					'path' => 'models/',
 					'namespace' => 'Model_'
+				),
+				'language' => array(
+					'path' => 'language/',
+					'namespace' => 'Language_'
 				)
 			)
 		));
@@ -122,6 +126,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$acl->addResource('default:');
 		$acl->addResource('admin:');
 		$acl->addResource('user:');
+		$acl->addResource('/index/change-password');
 
 		$acl->allow('admin','admin:');
 		$acl->deny(array('guest', 'user'), 'admin:');
@@ -130,11 +135,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		// by default, the public module is allowed. Any eceptions need explicitly denied.
 		$acl->allow(array('guest', 'user', 'admin'), 'default:');
+		$acl->allow(array('guest'), '/index/change-password');
 
 		// setup FC plugin to run the check
 		$acl_plugin = new KTS_Plugins_Acl($acl);
 		$fc = Zend_Controller_Front::getInstance();
 		$fc->registerPlugin($acl_plugin);
+	}
+
+	/**
+	 * ROUTES
+	 */
+	protected function _initRewrite() {
+		$front = Zend_Controller_Front::getInstance();
+		$router = $front->getRouter();
+
+		$config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/routes.ini', 'production');
+		$router->addConfig($config, 'routes');
 	}
 }
 

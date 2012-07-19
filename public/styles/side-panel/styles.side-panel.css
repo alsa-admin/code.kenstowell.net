@@ -157,6 +157,15 @@ section#side-panel section.recover-login ul li:nth-child(2){
     margin: 8px 0 0 0;
 }
 
+section#side-panel section#login-recovered {
+    display: none;
+    position: absolute;
+    top:45%;
+    padding: 10px;
+    font-family: sofiaprolight;
+    color:#a89a8a;
+}
+
 section#side-panel  header{
     font-family: franchiseregular;
     color:#A89A8A;

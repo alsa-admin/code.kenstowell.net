@@ -1,8 +1,8 @@
 
 <section id="admin-panel-wrapper">
 	<header>
-		<img src="<?php echo $this->grav_url; ?>" alt="avatar-img" width="80px" height="80px">
-		<h1><?php echo $this->display_name; ?></h1>
+		<img class="avatar_url" src="<?php echo $this->avatar; ?>" alt="avatar-img" width="80px" height="80px">
+		<h1 class="display_name"><?php echo $this->display_name; ?></h1>
 		<h2>Admin Control Menu</h2>
 	</header>
 	<section id="admin-content-wrapper">
@@ -20,30 +20,31 @@
 						<li>
 							<ul id="username">
 								<li class="field-label">Username:</li>
-								<li class="text-field"><input type="text" value="<?php echo $this->username; ?>"</li>
+								<li style="display: none"><input type="hidden" name="credential" class="name" value="<?php echo $this->username; ?>"></li>
+								<li class="text-field"><input type="text" name="name" class="name" value="<?php echo $this->username; ?>"></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="display-name">
 								<li class="field-label">Display Name:</li>
-								<li class="text-field"><input type="text" value="<?php echo $this->display_name; ?>"</li>
+								<li class="text-field"><input type="text" name="display_name" value="<?php echo $this->display_name; ?>"></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="email">
 								<li class="field-label">Email:</li>
-								<li class="text-field"><input type="text" value="<?php echo $this->email; ?>"</li>
+								<li class="text-field"><input type="email" name="email_address" value="<?php echo $this->email; ?>"></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="bio">
 								<li class="field-label">Bio:</li>
-								<li class="text-field"><textarea rows=12 cols="18"><?php echo $this->bio; ?></textarea></li>
+								<li class="text-field"><textarea rows=12 cols="18" name="bio"><?php echo $this->bio; ?></textarea></li>
 							</ul>
 						</li>
 						<li>
 							<ul class="update">
-								<li><input type="button" value="update"></li>
+								<li><input type="button" value="update" class="profile-update"></li>
 							</ul>
 						</li>
 					</ul>
@@ -56,24 +57,24 @@
 						<li>
 							<ul id="current-password">
 								<li class="field-label">Current Password:</li>
-								<li class="text-field"><input type="password" name="current-password" value=""</li>
+								<li class="text-field"><input type="password" name="current-password" value=""></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="new-password">
 								<li class="field-label">New Password:</li>
-								<li class="text-field"><input type="password" name="new-paswword" value=""</li>
+								<li class="text-field"><input type="password" name="password" value="" class="update-password"></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="confirm-password">
 								<li class="field-label">Confirm Password:</li>
-								<li class="text-field"><input type="password" name="password-confirmation"></li>
+								<li class="text-field"><input type="password" name="password-confirmation" class="confirm-password"></li>
 							</ul>
 						</li>
 						<li>
 							<ul class="update">
-								<li><input type="button" value="update"></li>
+								<li><input type="button" value="update" class="profile-update"></li>
 							</ul>
 						</li>
 					</ul>
@@ -85,24 +86,23 @@
 					<ul id="avatar-list">
 						<li>
 							<ul id="current-avatar">
-								<li class="avatar-img"><img src="<?php echo $this->current_avatar; ?>" alt="current avatar" width="80px" height="80px"></li>
+								<li class="avatar-img"><img class="avatar_url" src="<?php echo $this->avatar; ?>" alt="current avatar" width="80px" height="80px"></li>
 								<li class="field-label">Current Avatar:</li>
-								<li class="text-field"><input type="text" name="current-avatar-url"></li>
+								<li class="text-field"><input type="text" name="current-avatar-url" value="<?php echo $this->avatar; ?>"></li>
 							</ul>
 						</li>
 						<li>
 							<ul id="new-avatar">
-								<li class="avatar-img"><img src="/images/_admin/avatar-blank.jpg" alt="blank avatar" width="80px" height="80px"></li>
 								<li class="field-label">New Avatar:</li>
-								<li class="text-field"><input type="text" name="new-avatar-url" value=""></li>
+								<li class="text-field"><input type="text" name="avatar_url" value=""></li>
 							</ul>
 						</li>
 						<li>
-							Avatars are restriced to remotely linkable files.
+							Avatars are restriced to remotely linkable files. <b>A blank value will default to Gravatar if there is one for your given email.</b>
 						</li>
 						<li>
 							<ul class="update">
-								<li><input type="button" value="update"></li>
+								<li><input type="button" value="update" class="profile-update"></li>
 							</ul>
 						</li>
 					</ul>

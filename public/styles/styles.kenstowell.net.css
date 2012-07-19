@@ -16,6 +16,8 @@
 @import url('code/styles.code.css');
 @import url('contact/styles.contact.css');
 @import url('side-panel/styles.side-panel.css');
+@import url('index/styles.index.css');
+@import url('index/styles.auth-router.css');
 
 /* Page styles: admin */
 @import url('_admin/index/styles.admin.index.css');
@@ -40,6 +42,7 @@ body {
     width:12000px;
     height:5200px;
     overflow: hidden;
+    /*overflow: scroll;*/
     background: url('/images/index/concrete_wall_2.png') repeat;
 }
 
@@ -129,7 +132,7 @@ input[type=text] {
     /*height: 2.4em;*/
     width: 35%;
     color: #4B4B4B;
-    font-family: codeprodemoregular;
+    font-family: sofiaprolight;
     font-size: 14px;
     border: 2px solid #98A3A8;
     border-radius: 6px;
@@ -142,7 +145,7 @@ input[type=password] {
     /*height: 2.4em;*/
     width: 35%;
     color: #4B4B4B;
-    font-family: codeprodemoregular;
+    font-family: sofiaprolight;
     font-size: 14px;
     border: 2px solid #98A3A8;
     border-radius: 6px;
@@ -155,7 +158,7 @@ input[type=email] {
     /*height: 2.4em;*/
     width: 35%;
     color: #4B4B4B;
-    font-family: codeprodemoregular;
+    font-family: sofiaprolight;
     font-size: 14px;
     border: 2px solid #98A3A8;
     border-radius: 6px;
@@ -212,7 +215,7 @@ textarea {
     /*line-height: 1.4em;*/
     /*height: 2.4em;*/
     color: #4B4B4B;
-    font-family: codeprodemoregular;
+    font-family: sofiaprolight;
     font-size: 14px;
     border: 2px solid #98A3A8;
     border-radius: 6px;
@@ -226,11 +229,13 @@ label {
     font-size: 14px;
 }
 
-input.passed-validation {
+input.passed-validation,
+textarea.passed-validation {
     border-color: green;
 }
 
-input.failed-validation {
+input.failed-validation,
+textarea.failed-validation {
     border-color: red;
 }
 /**********************************************************************************************************************************************************

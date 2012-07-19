@@ -1,0 +1,70 @@
+<?php if ($this->password_content) : ?>
+<section id="change-password-content-wrapper">
+	<section id="change-password" class="control-accordion">
+		<header class="control-accordion-header">
+			<h2>Change your password</h2>
+		</header>
+		<section id="change-password-content" class="control-accordion-content expanded">
+			<section id="change-password">
+				<header>
+					<h4>Change Password</h4>
+				</header>
+				<form method="post" action="/side-panel/update-password">
+					<ul id="change-password-list">
+						<li>
+							<ul id="new-password">
+								<li class="field-label">New Password:</li>
+								<li class="text-field"><input type="password" name="new-password" value=""</li>
+							</ul>
+						</li>
+						<li>
+							<ul id="confirm-password">
+								<li class="field-label">Confirm Password:</li>
+								<li class="text-field"><input type="password" name="password-confirmation"></li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li><input type="hidden" name="token" value="<?php echo $this->token; ?>"></li>
+								<li><input type="hidden" name="id" value="<?php echo $this->id; ?>"></li>
+							</ul>
+						</li>
+						<li>
+							<ul class="update">
+								<li><input type="button" value="update"></li>
+							</ul>
+						</li>
+					</ul>
+				</form>
+			</section>
+		</section>
+	</section>
+</section>
+<?php endif; ?>
+<?php if($this->new_user_content) : ?>
+<section id="user-confirmed-wrapper">
+	<section class="control-accordion">
+		<header class="control-accordion-header">
+			<h1>Account Confirmation</h1>
+		</header>
+		<section class="control-accordion-content expanded">
+			<h2>Your account has done been confirmed! You'll be redirected to the actual site here in a jiffy.</h2>
+		</section>
+	</section>
+</section>
+<script type="text/javascript">
+	(function() {
+		setTimeout(function() {
+			// TODO: Obviously change this to production URL's
+			window.location.href = 'http://code.kenstowell.local';
+		}, 10000);
+	})();
+</script>
+<?php endif; ?>
+<script type="text/javascript">
+	(function() {
+		$(document).ready(function() {
+			$('header#main-header, section#side-panel').hide();
+		});
+	})();
+</script>

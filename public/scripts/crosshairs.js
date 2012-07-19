@@ -8,7 +8,7 @@
 *
 *
 */
-(function() {
+(function($) {
 
 	//Instantiate as a jQuery plugin and create a new Crosshairs object
 	jQuery.fn.crosshairs = function(options) {
@@ -39,11 +39,11 @@
 		this.init();
 	};
 
-	/************************
-	 * CROSSHAIRS DEFAULTS
-	 * @desc: default options for plugin behavior
-	 *
-	 */
+/************************
+ * CROSSHAIRS DEFAULTS
+ * @desc: default options for plugin behavior
+ *
+ */
 	Crosshairs.defaults = {
 		width: '20px', //width
 		height: '20px',//height
@@ -229,37 +229,37 @@
 				});
 			}
 		},
-/**
-* GET ITEM COORDINATES
-* @desc: gets item coordiantes for each x,y intersection
-* @param elem
-*/
-getItemCoordinates: function(elem) {
-var self = this;
-var $elem = $(elem);
-var pos = $elem.position();
+		/**
+		* GET ITEM COORDINATES
+		* @desc: gets item coordiantes for each x,y intersection
+		* @param elem
+		*/
+		getItemCoordinates: function(elem) {
+			var self = this;
+			var $elem = $(elem);
+			var pos = $elem.position();
 
-//return an obecjt with the coords of each point
-return {
-TL: {
-x:pos.left,
-y:pos.top
-},
-TR: {
-x: pos.left+$elem.width(),
-y: pos.top
-},
-BL: {
-x: pos.left,
-y: pos.top+$elem.height()
-},
-BR: {
-x: pos.left+$elem.width(),
-y: pos.top+$elem.height()
-}
-};
-}
-};
+			//return an obecjt with the coords of each point
+			return {
+				TL: {
+					x:pos.left,
+					y:pos.top
+				},
+				TR: {
+					x: pos.left+$elem.width(),
+					y: pos.top
+				},
+				BL: {
+					x: pos.left,
+					y: pos.top+$elem.height()
+				},
+				BR: {
+					x: pos.left+$elem.width(),
+					y: pos.top+$elem.height()
+				}
+			};
+		}
+	};
 })(jQuery);
 
 /************************************************************* END ***************************************************************************************/

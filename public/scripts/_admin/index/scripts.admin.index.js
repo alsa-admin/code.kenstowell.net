@@ -20,7 +20,7 @@
  *
  *
  */
-(function () {
+(function (global) {
 	/**
 	 * OBJECT CONSTRUCTOR
 	 */
@@ -43,11 +43,15 @@
 
 			//load dynamic page elements
 			this.buildPage();
+
+			//Bind events
+			this.bindEvents();
 		},
 		/**
 		 * BUILD PAGE
 		 */
 		buildPage:function () {
+			var self = this;
 			/**
 			 * Document Ready
 			 */
@@ -61,13 +65,30 @@
 			$(window).load(function () {
 
 			});
+		},
+		/**
+		 * BIND EVENTS
+		 */
+		bindEvents: function() {
+			var self = this;
+
+			//current password focus out
+			$('input[name=current-password]').live('focusout', function() {
+				SP.checkCurrentPassword(this);
+			});
+
+			//update button
+			$('input[type=button]').live('click', function() {
+				SP.updateUserInfo(this);
+			});
+
+			$('input[name=password-confirmation]').live('keyup', function() {
+				SP.comparePasswords($('.update-password'), $(this), $(this).closest('section').children().find('.profile-update'));
+			});
 		}
 	};
-
-	//instantiate the object and push it to the window object
-	var Obj = new _Admin();
-})();
-
+	new _Admin();
+})(window);
 
 /************************************************************* END ***************************************************************************************/ 
 

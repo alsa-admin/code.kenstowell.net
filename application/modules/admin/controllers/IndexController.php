@@ -26,13 +26,20 @@ class Admin_IndexController extends Zend_Controller_Action
 			$this->view->username = $user->name;
 			$this->view->bio = $user_model->get_user_bio($user->name);
 			$this->view->email = $user_model->get_user_by_email($user->name);
+			//$this->view->avatar =
 
-			//get user gravatar
-			$email = $user_model->get_user_by_email($user->name);
-			$default = 'http://code.kenstowell.local/images/_admin/avatar-blank.jpg';
-			$size = 80;
-			//form gravatar url
-			$this->view->grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+			$avatar = $user_model->get_user_avatar($user->name);
+			if($avatar == '')
+			{
+				//get user gravatar
+				$email = $user_model->get_user_by_email($user->name);
+				$default = 'http://code.kenstowell.local/images/_admin/avatar-blank.jpg';
+				$size = 80;
+				//form gravatar url
+				$this->view->avatar = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+			} else {
+				$this->view->avatar = $avatar;
+			}
 		}
     }
 }

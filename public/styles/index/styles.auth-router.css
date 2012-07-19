@@ -17,65 +17,44 @@
 /**********************************************************************************************************************************************************
  * CONTENT       																																																															            *
  *********************************************************************************************************************************************************/
-section#control-panel {
-    margin:0;
-    padding:4px;
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-}
 
-section#control-panel section#admin-panel-wrapper>header>h1{
-    display: inline-block;
-    font-size: 3em;
-    text-decoration: underline;
-    position:relative;
-    top:-30px;
-    left:0;
-}
-
-section#control-panel section#admin-panel-wrapper>header>h2{
-    display: inline-block;
-    font-family: sofiaprolight;
-    position: relative;
-    top:-14px;
-    left:-188px;
-    font-size: 1em;
-}
-
-section#admin-content-wrapper {
+/**
+ *-----------------------
+ * CHANGE PASSWORD
+ *-----------------------
+ */
+ {
     width:80%;
     height: 100%;
     text-align: center;
-    margin: 30px auto 0 auto;
+    margin: 15% auto 0 12%;
     overflow-y: visible;
     overflow-x: hidden;
 }
 
-section#admin-content-wrapper section.control-accordion {
+section.control-accordion {
     width:90%;
+    background: white;
     margin:20px 2%;
     box-shadow: 4px 6px 8px #000;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background: white url('/images/index/concrete_wall_2.png');
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-family: franchiseregular;
 }
 
-section#admin-content-wrapper section.control-accordion header.control-accordion-header {
+section.control-accordion header.control-accordion-header {
     width:100%;
     height:32px;
     background: #A89A8A;
     color: white;
 }
 
-section#admin-content-wrapper section.control-accordion header.control-accordion-header h2 {
+section.control-accordion header.control-accordion-header h2 {
     float: left;
     margin: 3px 3px;
 }
 
-section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon {
+section.control-accordion header.control-accordion-header span.icon {
     width:32px;
     height:32px;
     padding: 0;
@@ -88,23 +67,23 @@ section#admin-content-wrapper section.control-accordion header.control-accordion
     /*left:80%;*/
 }
 
-section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon-expand {
+ section.control-accordion header.control-accordion-header span.icon-expand {
     background: url('/images/index/icon_expand.png') no-repeat;
 }
 
-section#admin-content-wrapper section.control-accordion header.control-accordion-header span.icon-collapse {
+ section.control-accordion header.control-accordion-header span.icon-collapse {
     background: url('/images/index/icon_collapse.png') no-repeat;
 }
 
-section#admin-content-wrapper section.control-accordion section.expanded {
+ section.control-accordion section.expanded {
     display: block;
 }
 
-section#admin-content-wrapper section.control-accordion section.collapsed {
+ section.control-accordion section.collapsed {
     display: none;
 }
 
-section#admin-content-wrapper section.control-accordion section.control-accordion-content{
+ section.control-accordion section.control-accordion-content{
     max-height: 500px;
     width:97%;
     overflow-y: auto;
@@ -112,107 +91,59 @@ section#admin-content-wrapper section.control-accordion section.control-accordio
     padding:10px;
 }
 
-section#profile-admin-content section ul ul {
-     margin: 10px 0 0 0;
+section#change-password-content section ul ul {
+    margin: 10px 0 0 0;
 }
 
-section#profile-admin-content section li {
+section#change-password-content section li {
     list-style-type: none;
 }
 
-section#profile-admin-content section ul li.text-field {
+section#change-password-content section ul li.text-field {
     /*margin: -20px 0 0 0;*/
 }
 
-section#profile-admin-content ul.update {
+section#change-password-content ul.update {
     text-align: center;
     margin: 0 auto 0 auto;
 }
 
-/**
- ---------------------------------
- Profile Administration
- ---------------------------------
- */
-section#profile-admin-content section#account-information {
-    text-align: left;
-    float: left;
-    width: 27%;
-}
-
-section#profile-admin-content section#account-information header h4{
-    font-family: sofiaprolight;
-    text-decoration: underline;
-    color:black;
-    margin: 5px 0;
-}
-
-section#profile-admin-content section#account-information ul#account-information-list li.field-label{
-    font-family: sofiaprolight;
-    font-size: 12px;
-}
-
-section#profile-admin-content section#account-information ul#account-information-list input[type="text"],
-section#profile-admin-content section#account-information ul#account-information-list input[type="email"],
-section#profile-admin-content section#account-information ul#account-information-list input[type="password"],
-section#profile-admin-content section#account-information ul#account-information-list textarea {
-    width:100%;
-}
-
 /* Change Password */
-section#profile-admin-content section#change-password {
-    text-align: left;
-    float: left;
+section#change-password-content section#change-password {
+    text-align: center;
     width: 27%;
-    margin: 0 0 0 10%;
+    margin: 0 auto 0 auto;
 }
 
-section#profile-admin-content section#change-password header h4{
+section#change-password-content section#change-password header h4{
     font-family: sofiaprolight;
     text-decoration: underline;
     color:black;
     margin: 5px 0;
 }
 
-section#profile-admin-content section#change-password ul#change-password-list li.field-label{
+section#change-password-content section#change-password ul#change-password-list li.field-label{
     font-family: sofiaprolight;
     font-size: 12px;
 }
 
-section#profile-admin-content section#change-password ul#change-password-list input[type="password"],
-section#profile-admin-content section#change-password ul#change-password-list textarea {
+section#change-password-content section#change-password ul#change-password-list input[type="password"],
+section#change-password-content section#change-password ul#change-password-list textarea {
     width:100%;
 }
 
-/* Avatar */
-section#profile-admin-content section#avatar {
-    text-align: left;
-    float: right;
-    width: 27%;
-    font-family: sofiaprolight;
+/* New User */
+section#user-confirmed-wrapper {
+    margin:15%;
 }
 
-section#profile-admin-content section#avatar header h4{
-    font-family: sofiaprolight;
-    text-decoration: underline;
-    color:black;
-    margin: 5px 0;
+section#user-confirmed-wrapper  section.control-accordion-content {
+    padding:5%;
 }
 
-section#profile-admin-content section#avatar ul#avatar-list li.field-label{
-    font-family: sofiaprolight;
-    font-size: 12px;
-}
-
-section#profile-admin-content section#avatar ul#avatar-list input[type="text"],
-section#profile-admin-content section#avatar ul#avatar-list textarea {
-    width:100%;
-}
-
-section#profile-admin-content section#avatar ul#avatar-list li.avatar-img {
-    position: relative;
-    top:16px;
-    left:70%;
+section#user-confirmed-wrapper  section.control-accordion-content h2 {
+    font-weight: lighter;
+    text-align: center;
 }
 /**********************************************************************************************************************************************************
  * FOOTER      																																																															            *

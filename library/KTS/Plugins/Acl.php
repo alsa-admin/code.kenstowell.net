@@ -45,9 +45,9 @@ class KTS_Plugins_Acl extends Zend_Controller_Plugin_Abstract {
 
 		if (!$this->_acl->isAllowed($role, $resource, $action))
 		{
-			$request->setModuleName('admin')
+			$request->setModuleName('default')
 				->setControllerName('index')
-				->setActionName('login');
+				->setActionName('index');
 			$fc = Zend_Controller_Front::getInstance()->getResponse()->setHttpResponseCode(401);
 		}
 	}
