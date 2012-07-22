@@ -62,7 +62,6 @@
 					alignment: 'center',
 					offset: 0,
 					pathing: 'fixed',
-					speed: 'normal',
 					content: {
 						home: {
 							trigger: $('a#main-nav-link-home'),
@@ -92,7 +91,8 @@
 							trigger: $('a#main-nav-link-contact'),
 							target: $('section#contact-wrapper')
 						}
-					}
+					},
+					wrapper: $('#page-wrapper')
 				});
 			});
 			/**
